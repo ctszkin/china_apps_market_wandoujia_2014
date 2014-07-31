@@ -35,16 +35,16 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-\noindent \textbf{JEL Classification: Hello World} 
+\noindent \textbf{JEL Classification: } 
 
-\noindent \textbf{Keywords: china mobile apps market, dynamic panel model }  
+\noindent \textbf{Keywords: Apps Market, Dynamic Panel Model, Instrumental variables, Peer Review}  
 
 \end{abstract}
 \newpage
 
 
 \section{Objective}
-
+Our objective is to identify the casual effect of the peers' rating and the official ranking from the app store on the number of downloads of an mobile app. Our results provide information for apps company to formulate their marketing strategy and pricing information for apps store company (ranking or option to remove negative review)
 
 \section{Model}
 
@@ -53,14 +53,14 @@
 	&& \alpha_i + Categories + TimeEffect +  downloads_{it-1} \rho + \varepsilon_{it}
 \end{eqnarray}
 	
-	The variable of interest is the number of downloads and the parameters of interests are $Rating_{it}$ and $Ranking_{it}$ for apps $i$ during period $t$. 
+	The variable of interest is the number of downloads and the parameters of interests are $Rating_{it}$ and $Ranking_{it}$ for app $i$ during period $t$. 
 
 \begin{itemize}
-	\item $downloads_{it}$ is the number of downloads for apps $i$ during period $t$.
-	\item $Rating_{it}$ are measurement of the user rating for apps $i$ at period $t$. For example, it could be the proportion of positive rating in the different pages(one variable for one page). We might also include the product of positive rating and negative rating, which would capture the variance of the user rating \footnote{Variance of bernoulli distribution is $p(1-p)$}. 
-	\item $Ranking_{it}$ are measurement of the ranking or position of the apps, which are computed by the apps market using unknown algorithm(May be we could have some information about this?). 
-	\item $x_{it}$ are time varying characteristics of the apps. For example, the number of visitor to the web page(or visit with wandoujia's app) of apps $i$. The visitor count have potential to become an important variables. It could be a measurement of the strength of advertisement. It is also highly related to the ranking variables. If the ranking of the apps is higher, then the visitor count should also be higher, but not necessary the downloads. 
-	\item $\alpha_i$ is the apps fixed effect. We may also include version fixed effect.
+	\item $downloads_{it}$ is the number of downloads for app $i$ during period $t$.
+	\item $Rating_{it}$ are measurement of the user rating for app $i$ at period $t$. For example, it could be the proportion of positive rating in the different pages(one variable for one page). We might also include the product of positive rating and negative rating, which would capture the variance of the user rating \footnote{Variance of bernoulli distribution is $p(1-p)$}. 
+	\item $Ranking_{it}$ are measurement of the ranking or position of the app, which are computed by the apps store company using unknown algorithm(May be we could have some information about this?). 
+	\item $x_{it}$ are time varying characteristics of the app. For example, the number of visitor to the web page(or visit with wandoujia's app) of app $i$. The visitor count have potential to become an important variables. It could be a measurement of the strength of advertisement. It is also highly related to the ranking variables. If the ranking of the app is higher, then the visitor count should also be higher, but not necessary the downloads. 
+	\item $\alpha_i$ is the app fixed effect. We may also include version fixed effect.
 	\item $Categories$ are variables to capture the categories fixed effect. In fact, it should be an interaction terms to other variables. An alternate way is to model the above equation by categories, but it require each apps belong to only one category.
 	\item $TimeEffect$ capture possible time trend, seasonality and holiday effect. 
 	\item $y_{it-1}$ captures possible autocorrelation of the downloads. 
@@ -69,7 +69,7 @@
 \subsection{Others information}
 	Besides the information the user can observe, the following information could be valuable in this study
 \begin{itemize}
-	\item User data. When a user downloads an app, do we know what other apps does this user own? Since the user has to install an app from wandoujia, this information may be available. With this information, we may be able to estimate relationship across different apps. For example, WeChat and Whatapps should be substitutes, but camera apps and photo editing apps should be complements. With this information, we can further study the user rating dynamic across apps. (For example, if there are a lot of negative rating in Whatapps, would it boost the downloads of WeChat?). In fact, we can estimate these kind of correlation with machine learning methodology, it's better to have data.   
+	\item User data. When a user downloads an app, do we know what other apps do this user have? When do they install them? Since the user has to install an app from wandoujia, this information may be available. With this information, we may be able to estimate relationship across different apps. For example, WeChat and Whatapps should be substitutes, but camera apps and photo editing apps should be complements. With this information, we can further study the user rating dynamic across apps. (For example, if there are a lot of negative rating in Whatapps, would it boost the downloads of WeChat?). Although, we can infer the correlation with machine learning methodology(time series correlation of the number of downloads), it's better to have data.   
 	\item Number of visitors. In addition to the number of downloads, number of visitor tell us how many people did visit the page but didn't download the apps. Two apps with similar number of downloads but one with much larger number of visitors do tell us something. 
 \end{itemize} 
 
@@ -98,6 +98,20 @@ The release date of a new version of an apps may help us to identify the model. 
 If we have some information about how the company(wandoujia) rank those apps, it may help us to identify the model. For example, if the company modify the ranking algorithm of the apps, we could have a perfect instrument. 
 
 \section{Data Structure}
+We could store the raw data in the format of a relational data. The data contains 3 data tables, apps, counts and rating. Each row of the data tables is a record, each column is a field/attribute. The data structure will be described by the following ERD (Entity Relationship Diagram) 
+
+\begin{center}
+\includegraphics{erd1.pdf}
+\end{center}
+
+\subsubsection*{Remark}
+\begin{itemize}
+	\item * represents primary id. 
+	\item ... represents other relevant variables.
+	\item The sampling frequency preferred to be less than or equal to a day. (may be 6 or 12hrs)
+	\item Categories could be more than one variables
+\end{itemize}
+
 
 \section{Literature}
 \newpage
