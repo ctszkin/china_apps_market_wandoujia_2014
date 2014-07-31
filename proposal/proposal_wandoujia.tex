@@ -27,8 +27,8 @@
 
 \title{Proposal: The Importance of User Rating of apps: Evidence from apps market of China } 
 \author { 
-	Pucheng Liu \footnote{E-mail:  \protect\url{liupc2008@gmail.com}} 
-	\and Tszkin Julian Chan\footnote{Boston University, Department of Economics, 270 Bay State Road, Boston, MA, 02215. E-mail: \protect\url{cjulian@bu.edu}} 
+	Tszkin Julian Chan\footnote{Boston University, Department of Economics, 270 Bay State Road, Boston, MA, 02215. E-mail: \protect\url{cjulian@bu.edu}} 
+	\and Pucheng Liu \footnote{E-mail:  \protect\url{liupc2008@gmail.com}} 
 	\and Yanfei Wang \footnote{ Capital University of Economics and Business. E-mail: \protect\url{yanfei330@gmail.com}} 
 }
 
@@ -37,14 +37,14 @@
 \begin{abstract}
 \noindent \textbf{JEL Classification: } 
 
-\noindent \textbf{Keywords: Apps Market, Dynamic Panel Model, Instrumental variables, Peer Review}  
+\noindent \textbf{Keywords: Apps Market, Dynamic Panel Model, Instrumental variables, User Review}  
 
 \end{abstract}
 \newpage
 
 
 \section{Objective}
-Our objective is to identify the casual effect of the peers' rating and the official ranking from the app store on the number of downloads of an mobile app. Our results provide information for apps company to formulate their marketing strategy and pricing information for apps store company (ranking or option to remove negative review)
+Our objective is to identify the causal effect of the users' rating and the official ranking from the app store on the number of downloads of an mobile app. Our results provide information for apps company to formulate their marketing strategy and pricing information for apps store company (ranking or option to remove negative review)
 
 \section{Model}
 
@@ -81,7 +81,7 @@ Our objective is to identify the casual effect of the peers' rating and the offi
 	&& \Delta TimeEffect +  \Delta downloads_{it-1} \rho + \Delta \varepsilon_{it}
 \end{eqnarray}
 	
-	After removed the fixed effect, $\Delta downloads_{it-1}$ is correlated with $\Delta \varepsilon_{it}$ but we can use the lagged value of  $\Delta downloads_{it-1}$ as instruments to $\Delta downloads_{it-1}$. This is the standard strategy proposed by \cite{ArellanoBond1991} and \cite{Holtz-EakinNeweyRosen1988}. 
+	After removed the fixed effect, $\Delta downloads_{it-1}$ is correlated with $\Delta \varepsilon_{it}$ but we can use the lagged value of  $\Delta downloads_{it-1}$ as instruments to $\Delta downloads_{it-1}$. This is the standard strategy proposed by ArellanoBond(1991) and Holtz-EakinNeweyRosen(1988). 
 	
 	
 	Another possibility is reverse causality. Some of the measurements of user rating could be affected by the number of downloads. For example, total number of user rating or the how frequency of the user rating would depend on the number of downloads. However, the lagged value of rating may not directly affect the number of downloads. If only a few new entries of rating, then the rating measurement should be highly correlated overtime. Therefore, the lagged value of rating could be an instruments. 
@@ -96,6 +96,13 @@ The release date of a new version of an apps may help us to identify the model. 
 
 \subsection{Hidden algorithm from the company(wandoujia)}
 If we have some information about how the company(wandoujia) rank those apps, it may help us to identify the model. For example, if the company modify the ranking algorithm of the apps, we could have a perfect instrument. 
+
+\subsection{Extensions}
+\begin{itemize}
+\item The effects of one app's ratings (downloads) on competitive apps (and complementary apps)
+
+\item The effects of ratings (downloads) on developers' decision to update this app
+\end{itemize}
 
 \section{Data Structure}
 We could store the raw data in the format of a relational data. The data contains 3 data tables, apps, counts and rating. Each row of the data tables is a record, each column is a field/attribute. The data structure will be described by the following ERD (Entity Relationship Diagram) 
