@@ -1,2 +1,2 @@
-china_apps_market_wandoujia_2014
+The Importance of User Rating of apps: Evidence from apps market of China
 ================================
